@@ -1,0 +1,59 @@
+/* || general styles */
+
+html {
+  font-family: roboto, arial, sans-serif;
+  font-size: 0.9rem;
+  // color: #333333;
+}
+
+body {
+  margin: 0 auto;
+}
+
+header {
+  margin-left: 20px;	
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+section {
+  margin-left: 20px;  
+}
+
+article {
+  margin-right: 10px;
+//  display: flex;
+//  flex-flow: column;
+}
+
+divh2 {
+  width: 40px;
+  float: left;
+  border-radius: 0.5rem;
+  letter-spacing: -0.5px;
+  text-align: center;
+  font-weight: 600;
+  margin-right: 15px;
+  padding: 5px 10px 5px 10px;
+}
+
+divul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+article li {
+  float: left;  
+  margin-top: 5px;
+  padding-right: 15px;
+  font-weight: 600;
+}
+
+section p {
+  color: #666666;
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
