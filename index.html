@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta http-equiv="refresh" content="30">
+  <meta charset="utf-8">
+  <title>Автобусы</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header>
+
+  </header>
+
+  <section>
+
+  </section>
+
+  <script>
+    async function populate() {
+      
+      const searchParams = new URLSearchParams(window.location.search);
+      const stopbus = searchParams.get('busstop');
+
+      const requestURL = `https://moscowtransport.app/api/stop_v2/${stopbus}`;
+      const request = new Request(requestURL);
+
+      const response = await fetch(request);
+      const routePathText = await response.text();
+
+      const routePath = JSON.parse(routePathText);
+      populateHeader(routePath);
+      populateSection(routePath);
+
+    }
+
+    function populateHeader(obj) {
+      const header = document.querySelector('header');
+      const myH1 = document.createElement('h1');
+      myH1.textContent = obj.name;
+      header.appendChild(myH1);
+
+
+    }
+
+    function populateSection(obj) {
+      const section = document.querySelector('section');
+      const heroes = obj.routePath;
+
+      for (const hero of heroes) {
+        const myArticle = document.createElement('article');
+        const myH2 = document.createElement('divh2');
+        const myPara1 = document.createElement('p');
+        const myPara2 = document.createElement('p');
+        const myList = document.createElement('divul');
+
+        myH2.textContent = `${hero.number}`;
+        myPara1.textContent = `${hero.lastStopName}`;
+        myH2.style.cssText += `background-color: ${hero.color}`;
+        if (hero.color == `#0C73A0`) {
+          myH2.style.cssText += `color: #FFFFFF`;
+        }
+
+        const superPowers = hero.externalForecast;
+        for (const power of superPowers) {
+          const listItem = document.createElement('li');
+          time = (Math.round(`${power.time/60}`));
+          if ( time > 1 ) { listItem.textContent = `${time} мин`; } else { listItem.textContent = `Прибывает`; }
+          if (power.byTelemetry == 1) {
+           listItem.style.cssText += `color:  #25b611`;
+         }       
+         myList.appendChild(listItem);  
+       }
+
+       myArticle.appendChild(myH2);
+       myArticle.appendChild(myList);
+       myArticle.appendChild(myPara1);
+       myArticle.appendChild(myPara2);
+       section.appendChild(myArticle); 
+     }
+   }
+
+   populate();
+
+ </script>
+ 
+
+</body></html>
