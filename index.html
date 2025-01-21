@@ -4,6 +4,7 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta http-equiv="refresh" content="30">
   <meta charset="utf-8">
+  <meta name="referrer" content="no-referrer" />
   <title>Автобусы</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -26,7 +27,7 @@
       const requestURL = `https://moscowtransport.app/api/stop_v2/${stopbus}`;
       const request = new Request(requestURL);
 
-      const response = await fetch(request, {referrerPolicy: "no-referrer"});
+      const response = await fetch(request, {referrerPolicy: "no-referrer", referrer: ""});
       const routePathText = await response.text();
 
       const routePath = JSON.parse(routePathText);
